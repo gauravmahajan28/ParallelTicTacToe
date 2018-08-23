@@ -1,0 +1,6 @@
+http://www.ejbtutorial.com/java-rmi/new-easy-tutorial-for-java-rmi-using-eclipse
+
+goto bin
+
+1)  rmic ImplExample
+2)  start rmiregistry
