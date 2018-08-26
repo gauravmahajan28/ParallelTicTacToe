@@ -36,30 +36,32 @@ public class Client {
     
        
          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+         
+         
+         System.out.println("Welcome to Tic Tac Toe !");
+    	 
+    	 System.out.print("Enter player name to register\n, q to quit");   
+    	 
+    	 
+    	 String playerName = bufferedReader.readLine();
+    	 
+    	 
+    	 if(playerName.equals("q"))
+    		 return;
+    	 
+    	 while(stub.addToWaitingList(playerName) != true)
+    	 {
+    		 System.out.println("player name already exists ! Please enter another name\n");
+    		 playerName = bufferedReader.readLine();
+    	 }
+    	 
+    	 
+     	 System.out.print("Successfully registered ! Waiting for another player to join in\n");   
+         
+    	 
+         
          while(true)
          {
-        	 
-        	 System.out.println("Welcome to Tic Tac Toe !");
-        	 
-        	 System.out.print("Enter player name to register\n, q to quit");   
-        	 
-        	 
-        	 String playerName = bufferedReader.readLine();
-        	 
-        	 
-        	 if(playerName.equals("q"))
-        		 break;
-        	 
-        	 while(stub.addToWaitingList(playerName) != true)
-        	 {
-        		 System.out.println("player name already exists ! Please enter another name\n");
-        		 playerName = bufferedReader.readLine();
-        	 }
-        	 
-        	 
-         	 System.out.print("Successfully registered ! Waiting for another player to join in\n");   
-             
-        	 
          	 while(stub.checkIfGameAlloted(playerName) == false)
          	 {
          		 System.out.println("Still waiting for player ! \n");
@@ -143,9 +145,20 @@ public class Client {
          			 }
       
          		 }
-         	 }
+         	 } // while game has finished
  
          	 System.out.println(" GAME OVER ! .. Winner IS : " + stub.getGameWinner(gameId));
+         	 
+         	 System.out.println(" Want to play another game ? press 1 for yes, 0 for no ");
+         	 int choice = (Integer.parseInt(bufferedReader.readLine()));
+         	 if(choice == 1)
+         	 {
+         		stub.addToWaitingList(playerName);
+         	 }
+         	 else
+         	 {
+         		 break;
+         	 }
          } // while true
          System.out.println("Game Finished !");
          System.out.println("We will miss you for Tic Tac Toe !");
