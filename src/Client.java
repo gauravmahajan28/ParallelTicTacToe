@@ -38,9 +38,9 @@ public class Client {
          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
          
          
-         System.out.println("Welcome to Tic Tac Toe !");
+         System.out.println("Welcome to Tic Tac Toe ! \n");
     	 
-    	 System.out.print("Enter player name to register\n, q to quit");   
+    	 System.out.print("Enter player name to register, q to quit \n");   
     	 
     	 
     	 String playerName = bufferedReader.readLine();
@@ -51,7 +51,7 @@ public class Client {
     	 
     	 while(stub.addToWaitingList(playerName) != true)
     	 {
-    		 System.out.println("player name already exists ! Please enter another name\n");
+    		 System.out.println("player name already exists ! Please enter another name \n");
     		 playerName = bufferedReader.readLine();
     	 }
     	 
@@ -68,7 +68,7 @@ public class Client {
          		 Thread.sleep(10000);
          	 }
          	 
-         	 System.out.println("You Are All SET ! ");
+         	 System.out.println("You Are All SET ! \n");
          	 
          	 int gameId = stub.getGameId(playerName);
          	 String opponentName = stub.getOpponentName(gameId, playerName);
@@ -111,7 +111,7 @@ public class Client {
          				} 
          				else 
          				{
-         				    System.out.println("You did not enter data..you lose game !!");
+         				    System.out.println("You did not enter data..you lose game !! \n");
          				    stub.finishGame(gameId, opponentName);
          				    break;
          				}
@@ -133,14 +133,14 @@ public class Client {
          		 else
          		 {
          			 System.out.println("Waiting for opponent to play !\n");
-         			 Thread.sleep(20000);
+         			 Thread.sleep(16000);
          			 if(stub.isPlayerTurn(playerName))
          				 continue;
          			 else if(stub.hasGameFinished(gameId))
          				 continue;
          			 else
          			 {
-         				 System.out.println("Opponent Seems to be disconnected ! Finishing Game\n");
+         				 System.out.println("Opponent Seems to be disconnected ! Finishing Game \n");
          				 stub.finishGame(gameId, playerName);
          			 }
       
@@ -149,19 +149,21 @@ public class Client {
  
          	 System.out.println(" GAME OVER ! .. Winner IS : " + stub.getGameWinner(gameId));
          	 
-         	 System.out.println(" Want to play another game ? press 1 for yes, 0 for no ");
+         	 System.out.println(" Want to play another game ? press 1 for yes, 0 for no \n");
          	 int choice = (Integer.parseInt(bufferedReader.readLine()));
          	 if(choice == 1)
          	 {
+         		 stub.removePlayerRecord(playerName);
          		stub.addToWaitingList(playerName);
          	 }
          	 else
          	 {
+         		 stub.removePlayerRecord(playerName);
          		 break;
          	 }
          } // while true
-         System.out.println("Game Finished !");
-         System.out.println("We will miss you for Tic Tac Toe !");
+         System.out.println("Game Finished ! \n");
+         System.out.println("We will miss you for Tic Tac Toe ! \n");
         
          // System.out.println("Remote method invoked"); 
       } catch (Exception e) {

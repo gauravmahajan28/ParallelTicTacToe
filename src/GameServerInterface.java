@@ -30,4 +30,8 @@ public interface GameServerInterface extends Remote
    
    String getGameWinner(int gameId) throws RemoteException; 
    
+   void removePlayerRecord(String playerName) throws RemoteException;
+   
+   
+   
 } 

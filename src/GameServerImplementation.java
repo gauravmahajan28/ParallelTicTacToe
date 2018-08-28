@@ -77,7 +77,7 @@ public class GameServerImplementation implements GameServerInterface
 		Character ch7 = gameStatus.charAt(7);
 		Character ch8 = gameStatus.charAt(8);
 		
-		System.out.println("char0 " + ch0 + " char1 " + ch1+ " char2 " + ch2+ " char3 " + ch3+ " char4 " + ch4+ " char5 " + ch5+ " char6 " + ch6 + " char7 " + ch7 + " char8 " + ch8 );
+	//	System.out.println("char0 " + ch0 + " char1 " + ch1+ " char2 " + ch2+ " char3 " + ch3+ " char4 " + ch4+ " char5 " + ch5+ " char6 " + ch6 + " char7 " + ch7 + " char8 " + ch8 );
 		Character same = ')';
 		boolean wonFlag = false;
 		if(ch0.equals(ch1) && ch0.equals(ch2))
@@ -131,7 +131,36 @@ public class GameServerImplementation implements GameServerInterface
 			return true;
 		}
 		else
-			return false;
+		{
+			int numberOfVacantPositions = 0;
+			if(ch0.equals('1'))
+				numberOfVacantPositions++;
+			if(ch1.equals('2'))
+				numberOfVacantPositions++;
+			if(ch2.equals('3'))
+				numberOfVacantPositions++;
+			if(ch3.equals('4'))
+				numberOfVacantPositions++;
+			if(ch4.equals('5'))
+				numberOfVacantPositions++;
+			if(ch5.equals('6'))
+				numberOfVacantPositions++;
+			if(ch6.equals('7'))
+				numberOfVacantPositions++;
+			if(ch7.equals('8'))
+				numberOfVacantPositions++;
+			if(ch8.equals('9'))
+				numberOfVacantPositions++;
+			
+			
+			if(numberOfVacantPositions <= 1)
+			{
+				GameDataStructure.gameToResult.put(gameId, "DRAW");
+				return true;
+			}
+			else
+				return false;
+		}	
 	}
 
 	@Override
@@ -201,6 +230,14 @@ public class GameServerImplementation implements GameServerInterface
 	public String getGameWinner(int gameId) throws RemoteException {
 		// TODO Auto-generated method stub
 		return GameDataStructure.gameToResult.get(gameId);
+	}
+
+	@Override
+	public void removePlayerRecord(String playerName) throws RemoteException {
+		// TODO Auto-generated method stub
+		GameDataStructure.playerToGame.remove(playerName);
+		GameDataStructure.playerToMarker.remove(playerName);
+		GameDataStructure.playerToTurn.remove(playerName);
 	}
 
 } 
