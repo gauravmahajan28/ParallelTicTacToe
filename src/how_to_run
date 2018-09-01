@@ -1,6 +1,8 @@
 http://www.ejbtutorial.com/java-rmi/new-easy-tutorial-for-java-rmi-using-eclipse
+https://stackoverflow.com/questions/35403765/java-rmi-for-remote-ip-host
+
 
 goto bin
 
-1)  rmic ImplExample
-2)  start rmiregistry
+1)  rmic GameServerImplementation
+2)  start rmiregistry 1099

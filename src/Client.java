@@ -25,8 +25,17 @@ public class Client {
       try {  
          
    
+    	  
+    	  System.setProperty("java.security.policy","C:\\Users\\gaurav\\workspace\\Distributed_Assign_2\\src\\test.policy");
+
+          if (System.getSecurityManager() == null) {
+              System.setSecurityManager(new SecurityManager());
+          }
+    	  
+    	  
+    	  
     	  // Getting the registry 
-         Registry registry = LocateRegistry.getRegistry(null); 
+         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
     
          
   

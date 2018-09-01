@@ -8,6 +8,13 @@ public class Server extends GameServerImplementation {
    public static void main(String args[]) { 
       try { 
          // Instantiating the implementation class 
+    	  
+    	  System.setProperty("java.security.policy","C:\\Users\\gaurav\\workspace\\Distributed_Assign_2\\src\\test.policy");
+
+          if (System.getSecurityManager() == null) {
+              System.setSecurityManager(new SecurityManager());
+          }
+    	  
          GameServerImplementation obj = new GameServerImplementation(); 
     
          // Exporting the object of implementation class  
@@ -15,9 +22,9 @@ public class Server extends GameServerImplementation {
          GameServerInterface stub = (GameServerInterface) UnicastRemoteObject.exportObject(obj, 0);  
          
          // Binding the remote object (stub) in the registry 
-         Registry registry = LocateRegistry.getRegistry(); 
+         Registry registry = LocateRegistry.getRegistry(1099); 
          
-         registry.bind("TicTacToeServer", stub);  
+         registry.rebind("TicTacToeServer", stub);  
          System.err.println("Server Running"); 
       } catch (Exception e) { 
          System.err.println("Server exception: " + e.toString()); 
